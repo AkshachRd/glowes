@@ -1,5 +1,7 @@
 extends Node
 
+var selected_level = 1  # По умолчанию уровень 1
+
 var first_card = null
 var second_card = null
 var grid_container = null
@@ -8,14 +10,26 @@ var can_flip = true
 @onready var grid = get_node("GridContainer")
 
 func _ready():
+	selected_level = Global.selected_level
 	create_cards()
 
 func create_cards():
-	var colors = [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW]
+	var number_of_pair_cards = 4  # Количество карточек по умолчанию
+	match selected_level:
+		1:
+			number_of_pair_cards = 4  # Уровень 1: 4 карточки
+		2:
+			number_of_pair_cards = 8  # Уровень 2: 8 карточек
+		3:
+			number_of_pair_cards = 12  # Уровень 3: 12 карточек
+		_:
+			number_of_pair_cards = 4  # По умолчанию 4 карточки
+	
 	var card_list = []
 	
 	# Создаем пары карточек каждого цвета
-	for color in colors:
+	for card_number in range(number_of_pair_cards):
+		var color = get_random_color()
 		for i in range(2):
 			var card_scene = preload("res://scenes/Card.tscn")
 			var card = card_scene.instantiate()
@@ -67,3 +81,9 @@ func check_match():
 func level_complete():
 	print("Уровень пройден!")
 	# Вы можете добавить здесь переход на следующий уровень или конец игры
+
+# Function to generate a random color
+func get_random_color():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	return Color(rng.randf(), rng.randf(), rng.randf())

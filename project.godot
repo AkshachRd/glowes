@@ -11,5 +11,9 @@ config_version=5
 [application]
 
 config/name="glowes"
-run/main_scene="res://scenes/Level.tscn"
+run/main_scene="res://scenes/Game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+
+[autoload]
+
+Global="*res://Global.gd"
