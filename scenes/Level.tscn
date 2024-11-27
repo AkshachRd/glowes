@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://biy736gk8fvyk"]
 
-[ext_resource type="Script" path="res://scripts/Main.gd" id="1_ukefn"]
+[ext_resource type="Script" path="res://scripts/Level.gd" id="1_kxoog"]
 
 [node name="Game" type="CenterContainer"]
 anchors_preset = 15
@@ -8,7 +8,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ukefn")
+script = ExtResource("1_kxoog")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 2

@@ -11,5 +11,5 @@ config_version=5
 [application]
 
 config/name="glowes"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/Level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
