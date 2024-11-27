@@ -29,6 +29,7 @@ func create_cards(container):
 			var card = card_scene.instantiate()
 			card.color = color
 			card.get_node("FrontSprite").modulate = color  # Задаем цвет лицевой стороны
+			card.connect("card_unflipped", Callable(self, "_on_Card_unflipped"))
 			card.connect("card_flipped", Callable(self, "_on_Card_flipped"))
 			card_list.append(card)
 	
@@ -39,6 +40,11 @@ func create_cards(container):
 	for card in card_list:
 		container.add_child(card)
 
+func _on_Card_unflipped(card):
+	can_flip = true
+	first_card = null
+	second_card =  null
+
 func _on_Card_flipped(card):
 	if not can_flip:
 		return
@@ -48,7 +54,6 @@ func _on_Card_flipped(card):
 		second_card = card
 		can_flip = false
 		# Проверяем совпадение после небольшой задержки
-		get_tree().create_timer(1.0)
 		check_match()
 
 func check_match():
@@ -57,7 +62,6 @@ func check_match():
 		first_card.queue_free()
 		second_card.queue_free()
 		# Проверяем, остались ли карточки
-		print(grid_container.get_child_count())
 		if grid_container.get_child_count() == 2:
 			level_complete()
 	else:
