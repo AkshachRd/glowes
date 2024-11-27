@@ -1,27 +1,33 @@
-extends GridContainer
+extends Node
 
 var first_card = null
 var second_card = null
+var grid_container = null
 var can_flip = true
 
 func _ready():
-	create_cards()
+	var center_container = CenterContainer.new()
+	# Создаём GridContainer и настраиваем его
+	grid_container = GridContainer.new()
+	grid_container.columns = 4  # Установите нужное количество столбцов
+	# Настройка отступов между элементами
+	grid_container.add_theme_constant_override("h_separation", 10)  # горизонтальный отступ
+	grid_container.add_theme_constant_override("v_separation", 10)  # вертикальный отступ
+	# Создаём карточки в контейнере
+	create_cards(grid_container)
+	center_container.add_child(grid_container)
+	add_child(center_container)
 
-func create_cards():
+func create_cards(container):
 	var colors = [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW]
 	var card_list = []
-	var start_position = Vector2(100, 100)  # Начальная позиция для первой карточки
-	var horizontal_offset = Vector2(0, 0)
-	var card_spacing = 200  # Отступ между карточками по оси X
 	
 	# Создаем пары карточек каждого цвета
 	for color in colors:
-		horizontal_offset = horizontal_offset + Vector2(card_spacing, 0)
 		for i in range(2):
 			var card_scene = preload("res://scenes/Card.tscn")
 			var card = card_scene.instantiate()
 			card.color = color
-			card.position = start_position + Vector2(0, 1.5 * card_spacing * i) + horizontal_offset
 			card.get_node("FrontSprite").modulate = color  # Задаем цвет лицевой стороны
 			card.connect("card_flipped", Callable(self, "_on_Card_flipped"))
 			card_list.append(card)
@@ -31,7 +37,7 @@ func create_cards():
 	
 	# Добавляем карточки в контейнер
 	for card in card_list:
-		add_child(card)
+		container.add_child(card)
 
 func _on_Card_flipped(card):
 	if not can_flip:
@@ -51,7 +57,8 @@ func check_match():
 		first_card.queue_free()
 		second_card.queue_free()
 		# Проверяем, остались ли карточки
-		if get_child_count() == 2:
+		print(grid_container.get_child_count())
+		if grid_container.get_child_count() == 2:
 			level_complete()
 	else:
 		# Переворачиваем карточки обратно

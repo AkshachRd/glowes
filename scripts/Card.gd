@@ -1,4 +1,4 @@
-extends Area2D
+extends Control
 
 signal card_flipped(card)
 
@@ -25,7 +25,13 @@ func flip_down():
 		#flip_up()
 		#emit_signal("card_flipped", self)
 		
-func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+		
+func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and not is_flipped:
 		flip_up()
 		emit_signal("card_flipped", self)
+		
+#func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+	#if event is InputEventMouseButton and event.pressed and not is_flipped:
+		#flip_up()
+		#emit_signal("card_flipped", self)
