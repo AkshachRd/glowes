@@ -27,8 +27,7 @@ func create_cards(container):
 		for i in range(2):
 			var card_scene = preload("res://scenes/Card.tscn")
 			var card = card_scene.instantiate()
-			card.color = color
-			card.get_node("FrontSprite").modulate = color  # Задаем цвет лицевой стороны
+			card.card_color = color
 			card.connect("card_unflipped", Callable(self, "_on_Card_unflipped"))
 			card.connect("card_flipped", Callable(self, "_on_Card_flipped"))
 			card_list.append(card)
@@ -57,7 +56,7 @@ func _on_Card_flipped(card):
 		check_match()
 
 func check_match():
-	if first_card.color == second_card.color:
+	if first_card.card_color == second_card.card_color:
 		# Убираем совпавшие карточки
 		first_card.queue_free()
 		second_card.queue_free()

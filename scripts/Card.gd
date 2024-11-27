@@ -3,12 +3,15 @@ extends Control
 signal card_flipped(card)
 signal card_unflipped(card)
 
-var color
+var card_color = Color.WHITE
 var is_flipped = false
+
+# Reference to the FrontSprite node
+@onready var front_sprite = $FrontSprite
 
 func _ready():
 	# Устанавливаем начальное состояние карточки (рубашкой вверх)
-	is_flipped = false
+	front_sprite.modulate = card_color
 	$FrontSprite.visible = false
 	$BackSprite.visible = true
 
