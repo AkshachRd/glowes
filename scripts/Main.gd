@@ -5,20 +5,12 @@ var second_card = null
 var grid_container = null
 var can_flip = true
 
-func _ready():
-	var center_container = CenterContainer.new()
-	# Создаём GridContainer и настраиваем его
-	grid_container = GridContainer.new()
-	grid_container.columns = 4  # Установите нужное количество столбцов
-	# Настройка отступов между элементами
-	grid_container.add_theme_constant_override("h_separation", 10)  # горизонтальный отступ
-	grid_container.add_theme_constant_override("v_separation", 10)  # вертикальный отступ
-	# Создаём карточки в контейнере
-	create_cards(grid_container)
-	center_container.add_child(grid_container)
-	add_child(center_container)
+@onready var grid = get_node("GridContainer")
 
-func create_cards(container):
+func _ready():
+	create_cards()
+
+func create_cards():
 	var colors = [Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW]
 	var card_list = []
 	
@@ -37,7 +29,7 @@ func create_cards(container):
 	
 	# Добавляем карточки в контейнер
 	for card in card_list:
-		container.add_child(card)
+		grid.add_child(card)
 
 func _on_Card_unflipped(card):
 	can_flip = true
@@ -61,7 +53,7 @@ func check_match():
 		first_card.queue_free()
 		second_card.queue_free()
 		# Проверяем, остались ли карточки
-		if grid_container.get_child_count() == 2:
+		if grid.get_child_count() == 2:
 			level_complete()
 	else:
 		# Переворачиваем карточки обратно
