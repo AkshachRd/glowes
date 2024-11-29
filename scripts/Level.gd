@@ -1,20 +1,20 @@
 extends Node
 
 var selected_level = 1  # По умолчанию уровень 1
+var number_of_pair_cards = 4  # Количество карточек по умолчанию
 
 var first_card = null
 var second_card = null
 var grid_container = null
 var can_flip = true
 
-@onready var grid = get_node("GridContainer")
+@onready var grid = find_child("GridContainer")
 
 func _ready():
 	selected_level = Global.selected_level
 	create_cards()
 
 func create_cards():
-	var number_of_pair_cards = 4  # Количество карточек по умолчанию
 	match selected_level:
 		1:
 			number_of_pair_cards = 4  # Уровень 1: 4 карточки
@@ -64,10 +64,13 @@ func _on_Card_flipped(card):
 func check_match():
 	if first_card.card_color == second_card.card_color:
 		# Убираем совпавшие карточки
-		first_card.queue_free()
-		second_card.queue_free()
+		number_of_pair_cards -= 1
+		make_card_invisible(first_card)
+		make_card_invisible(second_card)
+		make_card_noninteratable(first_card)
+		make_card_noninteratable(second_card)
 		# Проверяем, остались ли карточки
-		if grid.get_child_count() == 2:
+		if number_of_pair_cards == 0:
 			level_complete()
 	else:
 		# Переворачиваем карточки обратно
@@ -86,4 +89,15 @@ func level_complete():
 func get_random_color():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	return Color(rng.randf(), rng.randf(), rng.randf())
+	rng.randi_range(0, 1)
+	return Color(rng.randi_range(0, 1), rng.randi_range(0, 1), rng.randi_range(0, 1))
+
+
+func _on_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/Menu.tscn")
+	
+func make_card_invisible(card):
+	card.modulate = Color(1, 1, 1, 0)
+
+func make_card_noninteratable(card):
+	card.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)

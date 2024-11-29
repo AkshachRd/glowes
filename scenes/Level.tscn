@@ -10,6 +10,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kxoog")
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+current_tab = 0
+
+[node name="MenuButton" type="Button" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+text = "Menu"
+metadata/_tab_index = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
 columns = 4
+
+[connection signal="pressed" from="VBoxContainer/TabContainer/MenuButton" to="." method="_on_menu_button_pressed"]
