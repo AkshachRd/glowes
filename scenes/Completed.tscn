@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk2wd0sujgj3l"]
+
+[ext_resource type="Texture2D" uid="uid://br4ugf78hdo5n" path="res://assets/Exit.svg" id="1_iox38"]
+[ext_resource type="Script" path="res://scripts/Completed.gd" id="1_p1v6n"]
+[ext_resource type="Texture2D" uid="uid://hhm3lry5hl4a" path="res://assets/Retry.svg" id="2_5q6cn"]
+[ext_resource type="Texture2D" uid="uid://riuvd7arx1qn" path="res://assets/Next.svg" id="3_hvwde"]
+
+[node name="Completed" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p1v6n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Уровень пройден!"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Exit" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+icon = ExtResource("1_iox38")
+
+[node name="Retry" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+icon = ExtResource("2_5q6cn")
+
+[node name="Next" type="Button" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+icon = ExtResource("3_hvwde")
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/Next" to="." method="_on_next_pressed"]

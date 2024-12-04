@@ -2,6 +2,7 @@ extends Node
 
 var selected_level = 1  # По умолчанию уровень 1
 var number_of_pair_cards = 4  # Количество карточек по умолчанию
+var time_left = 60  # Изначальное время в секундах
 
 var first_card = null
 var second_card = null
@@ -9,10 +10,19 @@ var grid_container = null
 var can_flip = true
 
 @onready var grid = find_child("GridContainer")
+@onready var timer_label = find_child("TimerLabel")
 
 func _ready():
 	selected_level = Global.selected_level
 	create_cards()
+	# Запускаем таймер
+	$GameTimer.start()
+	# Инициализируем отображение времени
+	update_timer_label()
+
+func _process(delta: float) -> void:
+	time_left = $GameTimer.get_time_left()
+	update_timer_label()
 
 func create_cards():
 	match selected_level:
@@ -82,8 +92,7 @@ func check_match():
 	can_flip = true
 
 func level_complete():
-	print("Уровень пройден!")
-	# Вы можете добавить здесь переход на следующий уровень или конец игры
+	get_tree().change_scene_to_file("res://scenes/Completed.tscn")
 
 # Function to generate a random color
 func get_random_color():
@@ -101,3 +110,9 @@ func make_card_invisible(card):
 
 func make_card_noninteratable(card):
 	card.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)
+
+func _on_game_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://scenes/Failed.tscn")
+	
+func update_timer_label():
+	timer_label.text = "Время: " + str(int(time_left))
