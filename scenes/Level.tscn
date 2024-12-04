@@ -1,31 +1,54 @@
-[gd_scene load_steps=2 format=3 uid="uid://biy736gk8fvyk"]
+[gd_scene load_steps=4 format=3 uid="uid://biy736gk8fvyk"]
 
+[ext_resource type="Shader" path="res://shaders/Background.gdshader" id="1_0rnsf"]
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_kxoog"]
 
-[node name="Level" type="CenterContainer"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eetet"]
+shader = ExtResource("1_0rnsf")
+
+[node name="Level" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
 script = ExtResource("1_kxoog")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_eetet")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="MenuButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="MenuButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Menu"
 
-[node name="TimerLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="TimerLabel" type="Label" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Время: 30"
 horizontal_alignment = 2
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
 layout_mode = 2
 columns = 4
 
@@ -34,5 +57,5 @@ wait_time = 30.0
 one_shot = true
 autostart = true
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

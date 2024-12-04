@@ -101,7 +101,6 @@ func get_random_color():
 	rng.randi_range(0, 1)
 	return Color(rng.randi_range(0, 1), rng.randi_range(0, 1), rng.randi_range(0, 1))
 
-
 func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Menu.tscn")
 	
