@@ -106,7 +106,6 @@ func _on_menu_button_pressed() -> void:
 	
 func make_card_invisible(card):
 	card.make_invisible()
-	# card.modulate = Color(1, 1, 1, 0)
 
 func make_card_noninteratable(card):
 	card.set_mouse_filter(Control.MOUSE_FILTER_IGNORE)

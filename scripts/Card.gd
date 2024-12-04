@@ -22,6 +22,7 @@ func flip_down():
 	animation_player.play("card_flip_down")
 
 func make_invisible():
+	front_sprite.modulate = card_color
 	animation_player.play("make_invisible")
 
 func _gui_input(event: InputEvent) -> void:
