@@ -72,6 +72,7 @@ func _on_Card_flipped(card):
 		check_match()
 
 func check_match():
+	await get_tree().create_timer(0.5).timeout
 	if first_card.card_color == second_card.card_color:
 		# Убираем совпавшие карточки
 		number_of_pair_cards -= 1
