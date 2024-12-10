@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cvhotvnla2hba"]
+[gd_scene load_steps=10 format=3 uid="uid://cvhotvnla2hba"]
 
 [ext_resource type="Script" path="res://scripts/Card.gd" id="1_id5it"]
 [ext_resource type="Texture2D" uid="uid://xgbbujdui8yq" path="res://assets/sprite_front.png" id="2_kvg7c"]
@@ -66,34 +66,6 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_qxxx6"]
-resource_name = "card_flip_up"
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BackSprite:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BackSprite/FrontSprite:z_index")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [-1, 0]
-}
-
 [sub_resource type="Animation" id="Animation_d22bn"]
 resource_name = "card_flip_down"
 step = 0.01
@@ -120,6 +92,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, -1]
+}
+
+[sub_resource type="Animation" id="Animation_qxxx6"]
+resource_name = "card_flip_up"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackSprite:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.1, 1), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackSprite/FrontSprite:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 0]
 }
 
 [sub_resource type="Animation" id="Animation_mjbxa"]
@@ -158,29 +158,6 @@ _data = {
 "make_invisible": SubResource("Animation_mjbxa")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ibiqi"]
-animation = &"make_invisible"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oexhu"]
-animation = &"card_flip_down"
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_4nmr2"]
-
-[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_prw8x"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_s4sr2"]
-graph_offset = Vector2(-675.16, 93.0908)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_oexhu")
-nodes/Animation/position = Vector2(-320, 160)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_ibiqi")
-"nodes/Animation 2/position" = Vector2(-320, 340)
-nodes/Blend2/node = SubResource("AnimationNodeBlend2_4nmr2")
-nodes/Blend2/position = Vector2(20, 200)
-nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_prw8x")
-nodes/TimeSeek/position = Vector2(360, 160)
-nodes/output/position = Vector2(580, 180)
-node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"TimeSeek", 0, &"Blend2", &"output", 0, &"TimeSeek"]
-
 [node name="Node2D" type="Control"]
 custom_minimum_size = Vector2(164, 255)
 layout_mode = 3
@@ -202,9 +179,3 @@ sprite_frames = SubResource("SpriteFrames_l0rq1")
 libraries = {
 "": SubResource("AnimationLibrary_07w47")
 }
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeBlendTree_s4sr2")
-anim_player = NodePath("../AnimationPlayer")
-parameters/Blend2/blend_amount = 0.5
-parameters/TimeSeek/seek_request = -1.0
