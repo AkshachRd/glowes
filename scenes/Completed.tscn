@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bk2wd0sujgj3l"]
 
-[ext_resource type="Texture2D" uid="uid://br4ugf78hdo5n" path="res://assets/Exit.svg" id="1_iox38"]
+[ext_resource type="Texture2D" uid="uid://br4ugf78hdo5n" path="res://assets/buttons/Exit.svg" id="1_iox38"]
 [ext_resource type="Script" path="res://scripts/Completed.gd" id="1_p1v6n"]
-[ext_resource type="Texture2D" uid="uid://hhm3lry5hl4a" path="res://assets/Retry.svg" id="2_5q6cn"]
-[ext_resource type="Texture2D" uid="uid://riuvd7arx1qn" path="res://assets/Next.svg" id="3_hvwde"]
+[ext_resource type="Texture2D" uid="uid://hhm3lry5hl4a" path="res://assets/buttons/Retry.svg" id="2_5q6cn"]
+[ext_resource type="Texture2D" uid="uid://riuvd7arx1qn" path="res://assets/buttons/Next.svg" id="3_hvwde"]
 
 [node name="Completed" type="CenterContainer"]
 anchors_preset = 15

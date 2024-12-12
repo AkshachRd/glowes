@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l2mdq888n1c6"
-path="res://.godot/imported/3Right.svg-c20e9db7e7bff4b74656aefba8289aeb.ctex"
+uid="uid://hhm3lry5hl4a"
+path="res://.godot/imported/Retry.svg-ee178629f5dd0b3589f44ba5aa9f2be9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/3Right.svg"
-dest_files=["res://.godot/imported/3Right.svg-c20e9db7e7bff4b74656aefba8289aeb.ctex"]
+source_file="res://assets/buttons/Retry.svg"
+dest_files=["res://.godot/imported/Retry.svg-ee178629f5dd0b3589f44ba5aa9f2be9.ctex"]
 
 [params]
 

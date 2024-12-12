@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvfy6dfovwqae"]
 
-[ext_resource type="Texture2D" uid="uid://hhm3lry5hl4a" path="res://assets/Retry.svg" id="1_43qss"]
+[ext_resource type="Texture2D" uid="uid://hhm3lry5hl4a" path="res://assets/buttons/Retry.svg" id="1_43qss"]
 [ext_resource type="Script" path="res://scripts/Failed.gd" id="1_133wl"]
-[ext_resource type="Texture2D" uid="uid://br4ugf78hdo5n" path="res://assets/Exit.svg" id="1_ficda"]
+[ext_resource type="Texture2D" uid="uid://br4ugf78hdo5n" path="res://assets/buttons/Exit.svg" id="1_ficda"]
 
 [node name="Failed" type="CenterContainer"]
 anchors_preset = 15
