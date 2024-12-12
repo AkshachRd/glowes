@@ -14,6 +14,7 @@ var can_flip = true
 
 func _ready():
 	selected_level = Global.selected_level
+	grid.columns = _get_columns()
 	create_cards()
 	# Запускаем таймер
 	$GameTimer.start()
@@ -27,13 +28,13 @@ func _process(delta: float) -> void:
 func create_cards():
 	match selected_level:
 		1:
-			number_of_pair_cards = 4  # Уровень 1: 4 карточки
+			number_of_pair_cards = 3  # Уровень 1: 4 карточки
 		2:
-			number_of_pair_cards = 8  # Уровень 2: 8 карточек
+			number_of_pair_cards = 4  # Уровень 2: 8 карточек
 		3:
-			number_of_pair_cards = 12  # Уровень 3: 12 карточек
+			number_of_pair_cards = 6  # Уровень 3: 12 карточек
 		_:
-			number_of_pair_cards = 4  # По умолчанию 4 карточки
+			number_of_pair_cards = 2  # По умолчанию 4 карточки
 	
 	var card_list = []
 	
@@ -116,3 +117,15 @@ func _on_game_timer_timeout() -> void:
 	
 func update_timer_label():
 	timer_label.text = "Время: " + str(int(time_left))
+	
+func _get_columns():
+	match selected_level:
+		1:
+			return 2  # Уровень 1: 4 карточки
+		2:
+			return 3  # Уровень 2: 8 карточек
+		3:
+			return 3  # Уровень 3: 12 карточек
+		_:
+			return 2  # По умолчанию 4 карточки
+	
