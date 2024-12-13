@@ -40,15 +40,16 @@ func create_cards():
 	
 	# Создаем пары карточек каждого цвета
 	for card_number in range(number_of_pair_cards):
-		var color = get_random_color()
 		for i in range(2):
 			var card_scene = preload("res://scenes/Card.tscn")
 			var card = card_scene.instantiate()
-			card.card_color = color
 			card.connect("card_unflipped", Callable(self, "_on_Card_unflipped"))
 			card.connect("card_flipped", Callable(self, "_on_Card_flipped"))
 			card_list.append(card)
 	
+	assign_backs_to_cards(card_list)
+	assign_gloves_to_cards(card_list)
+	assign_colors_to_cards(card_list)
 	# Перемешиваем карточки
 	card_list.shuffle()
 	
@@ -74,7 +75,7 @@ func _on_Card_flipped(card):
 
 func check_match():
 	await get_tree().create_timer(0.5).timeout
-	if first_card.card_color == second_card.card_color:
+	if first_card.variant == second_card.variant:
 		# Убираем совпавшие карточки
 		number_of_pair_cards -= 1
 		make_card_invisible(first_card)
@@ -128,4 +129,58 @@ func _get_columns():
 			return 3  # Уровень 3: 12 карточек
 		_:
 			return 2  # По умолчанию 4 карточки
+			
+const number_of_gloves_variants = 6
+
+func assign_gloves_to_cards(cards):
+	var variant = 1
+	var variants_path = "res://assets/gloves_variants/"
+	
+	var card_number = 0
+	while card_number < cards.size() - 1:
+		var path = variants_path + str(variant)
+		var left_texture = load(path + "/Left.svg")
+		var right_texture = load(path + "/Right.svg")
+		
+		var left_card = cards[card_number]
+		left_card.glove = left_texture
+		left_card.variant = variant
+		
+		card_number += 1
+		var right_card = cards[card_number]
+		right_card.glove = right_texture
+		right_card.variant = variant
+		
+		variant += 1
+		
+		if variant > number_of_gloves_variants:
+			variant = 1
+			
+		card_number += 1
+		
+func assign_colors_to_cards(cards):
+	var card_number = 0
+	while card_number < cards.size() - 1:
+		var color = get_random_color()
+		
+		var card = cards[card_number]
+		card.card_color = color
+		
+		card_number += 1
+		card = cards[card_number]
+		card.card_color = color
+		
+		card_number += 1
+		
+func assign_backs_to_cards(cards):
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var back_variant = rng.randi_range(1, 3)
+	
+	var variants_path = "res://assets/card/backs/"
+	var path = variants_path + str(back_variant) + ".png"
+	var back_texture = load(path)
+	
+	for card in cards:
+		card.back = back_texture
 	

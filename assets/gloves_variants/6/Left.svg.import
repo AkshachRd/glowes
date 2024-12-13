@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bubeboqv4auyx"
-path="res://.godot/imported/5Left.svg-0ea81cc120b3c6a737316d9c3b4df57c.ctex"
+uid="uid://ce2huk6plwfxp"
+path="res://.godot/imported/Left.svg-67413bdc84ec39d08c816a2ca3fce6db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/glowes_variants/5/5Left.svg"
-dest_files=["res://.godot/imported/5Left.svg-0ea81cc120b3c6a737316d9c3b4df57c.ctex"]
+source_file="res://assets/gloves_variants/6/Left.svg"
+dest_files=["res://.godot/imported/Left.svg-67413bdc84ec39d08c816a2ca3fce6db.ctex"]
 
 [params]
 

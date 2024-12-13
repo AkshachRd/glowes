@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnpbfsimkmyd4"
-path="res://.godot/imported/2Right.svg-9a502053d94413dd84532f1a31fb3568.ctex"
+uid="uid://d3rn52ck5dcy"
+path="res://.godot/imported/1.png-5d447925b22e91d9f7f24567383a1acc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/glowes_variants/2/2Right.svg"
-dest_files=["res://.godot/imported/2Right.svg-9a502053d94413dd84532f1a31fb3568.ctex"]
+source_file="res://assets/card/backs/1.png"
+dest_files=["res://.godot/imported/1.png-5d447925b22e91d9f7f24567383a1acc.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
