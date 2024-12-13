@@ -14,8 +14,11 @@ var can_flip = true
 
 func _ready():
 	selected_level = Global.selected_level
-	grid.columns = _get_columns()
-	create_cards()
+	var cards = create_cards()
+	grid.columns = _get_columns(cards)
+	# Добавляем карточки в контейнер
+	for card in cards:
+		grid.add_child(card)
 	# Запускаем таймер
 	$GameTimer.start()
 	# Инициализируем отображение времени
@@ -53,9 +56,7 @@ func create_cards():
 	# Перемешиваем карточки
 	card_list.shuffle()
 	
-	# Добавляем карточки в контейнер
-	for card in card_list:
-		grid.add_child(card)
+	return card_list
 
 func _on_Card_unflipped(card):
 	can_flip = true
@@ -119,16 +120,8 @@ func _on_game_timer_timeout() -> void:
 func update_timer_label():
 	timer_label.text = "Время: " + str(int(time_left))
 	
-func _get_columns():
-	match selected_level:
-		1:
-			return 2  # Уровень 1: 4 карточки
-		2:
-			return 3  # Уровень 2: 8 карточек
-		3:
-			return 3  # Уровень 3: 12 карточек
-		_:
-			return 2  # По умолчанию 4 карточки
+func _get_columns(cards):
+	return floor(cards.size() / 5) + 1
 			
 const number_of_gloves_variants = 6
 
