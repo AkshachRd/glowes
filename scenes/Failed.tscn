@@ -1,43 +1,57 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvfy6dfovwqae"]
+[gd_scene load_steps=7 format=3 uid="uid://bvfy6dfovwqae"]
 
 [ext_resource type="Script" path="res://scripts/Failed.gd" id="1_133wl"]
+[ext_resource type="Texture2D" uid="uid://g4il68t7jj0" path="res://assets/Failure.jpeg" id="1_wa7nh"]
 [ext_resource type="Theme" uid="uid://js5o5hi387g5" path="res://themes/button_theme.tres" id="2_fbv3e"]
 [ext_resource type="Texture2D" uid="uid://cpx1hskl15b7m" path="res://assets/buttons/Exit.png" id="3_vho8k"]
 [ext_resource type="Texture2D" uid="uid://d1b3h22t3cjx7" path="res://assets/buttons/Retry.png" id="4_gxu42"]
 
-[node name="Failed" type="CenterContainer"]
+[sub_resource type="LabelSettings" id="LabelSettings_pipwt"]
+font_size = 36
+
+[node name="Failed" type="TextureRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_wa7nh")
 script = ExtResource("1_133wl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+offset_left = 230.0
+offset_top = 560.0
+offset_right = 490.0
+offset_bottom = 720.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Проиграл!"
+label_settings = SubResource("LabelSettings_pipwt")
 horizontal_alignment = 1
+uppercase = true
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 columns = 2
 
-[node name="Exit" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="Exit" type="Button" parent="CenterContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 theme = ExtResource("2_fbv3e")
 icon = ExtResource("3_vho8k")
 icon_alignment = 1
 
-[node name="Retry" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="Retry" type="Button" parent="CenterContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 theme = ExtResource("2_fbv3e")
 icon = ExtResource("4_gxu42")
 icon_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/GridContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/Retry" to="." method="_on_retry_pressed"]
