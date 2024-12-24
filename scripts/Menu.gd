@@ -27,6 +27,3 @@ func start_game():
 	Global.selected_level = selected_level
 	# Перейдем на игровую сцену
 	get_tree().change_scene_to_file("res://scenes/Level.tscn")
-
-func _on_exit_button_pressed() -> void:
-	get_tree().quit()

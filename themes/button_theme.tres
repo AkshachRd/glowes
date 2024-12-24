@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://js5o5hi387g5"]
+
+[ext_resource type="Texture2D" uid="uid://dn7rhafdaw1wo" path="res://assets/Button_Background.png" id="1_d2wjs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_da7oo"]
+texture = ExtResource("1_d2wjs")
+
+[resource]
+Button/styles/normal = SubResource("StyleBoxTexture_da7oo")

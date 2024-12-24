@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk2wd0sujgj3l"]
+[gd_scene load_steps=6 format=3 uid="uid://bk2wd0sujgj3l"]
 
-[ext_resource type="Texture2D" uid="uid://br4ugf78hdo5n" path="res://assets/buttons/Exit.svg" id="1_iox38"]
 [ext_resource type="Script" path="res://scripts/Completed.gd" id="1_p1v6n"]
-[ext_resource type="Texture2D" uid="uid://hhm3lry5hl4a" path="res://assets/buttons/Retry.svg" id="2_5q6cn"]
-[ext_resource type="Texture2D" uid="uid://riuvd7arx1qn" path="res://assets/buttons/Next.svg" id="3_hvwde"]
+[ext_resource type="Theme" uid="uid://js5o5hi387g5" path="res://themes/button_theme.tres" id="2_job75"]
+[ext_resource type="Texture2D" uid="uid://cpx1hskl15b7m" path="res://assets/buttons/Exit.png" id="3_7dc6s"]
+[ext_resource type="Texture2D" uid="uid://d1b3h22t3cjx7" path="res://assets/buttons/Retry.png" id="4_e0gnn"]
+[ext_resource type="Texture2D" uid="uid://covoxdyl01chb" path="res://assets/buttons/Next.png" id="5_l7pl7"]
 
 [node name="Completed" type="CenterContainer"]
 anchors_preset = 15
@@ -26,16 +27,25 @@ layout_mode = 2
 columns = 3
 
 [node name="Exit" type="Button" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-icon = ExtResource("1_iox38")
+theme = ExtResource("2_job75")
+icon = ExtResource("3_7dc6s")
+icon_alignment = 1
 
 [node name="Retry" type="Button" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-icon = ExtResource("2_5q6cn")
+theme = ExtResource("2_job75")
+icon = ExtResource("4_e0gnn")
+icon_alignment = 1
 
 [node name="Next" type="Button" parent="VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-icon = ExtResource("3_hvwde")
+theme = ExtResource("2_job75")
+icon = ExtResource("5_l7pl7")
+icon_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/GridContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="VBoxContainer/GridContainer/Retry" to="." method="_on_retry_pressed"]

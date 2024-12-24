@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyxegtaxtg4g5"]
+[gd_scene load_steps=3 format=3 uid="uid://dyxegtaxtg4g5"]
 
 [ext_resource type="Script" path="res://scripts/Menu.gd" id="1_wn3il"]
+[ext_resource type="Theme" uid="uid://js5o5hi387g5" path="res://themes/button_theme.tres" id="2_1ag4r"]
 
 [node name="Menu" type="CenterContainer"]
 anchors_preset = 15
@@ -24,21 +25,19 @@ columns = 10
 
 [node name="LevelButton1" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+theme = ExtResource("2_1ag4r")
 text = "Уровень 1"
 
 [node name="LevelButton2" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+theme = ExtResource("2_1ag4r")
 text = "Уровень 2"
 
 [node name="LevelButton3" type="Button" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
+theme = ExtResource("2_1ag4r")
 text = "Уровень 3"
-
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Выйти"
 
 [connection signal="pressed" from="VBoxContainer/GridContainer/LevelButton1" to="." method="_on_level_button_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/GridContainer/LevelButton2" to="." method="_on_level_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/GridContainer/LevelButton3" to="." method="_on_level_button_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
