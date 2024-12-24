@@ -1,43 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyxegtaxtg4g5"]
+[gd_scene load_steps=4 format=3 uid="uid://dyxegtaxtg4g5"]
 
 [ext_resource type="Script" path="res://scripts/Menu.gd" id="1_wn3il"]
+[ext_resource type="Texture2D" uid="uid://dr6x3kq75mlc7" path="res://assets/backgrounds/c143d3c7be5211ef96f552ad8536bc0e_1.jpg" id="1_wu2ay"]
 [ext_resource type="Theme" uid="uid://js5o5hi387g5" path="res://themes/button_theme.tres" id="2_1ag4r"]
 
-[node name="Menu" type="CenterContainer"]
+[node name="Menu" type="TextureRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_wu2ay")
 script = ExtResource("1_wn3il")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+offset_left = 231.0
+offset_top = 615.0
+offset_right = 488.0
+offset_bottom = 665.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="ChooseLevel" type="Label" parent="VBoxContainer"]
+[node name="ChooseLevel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Выберите уровень:"
 horizontal_alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 columns = 10
 
-[node name="LevelButton1" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="LevelButton1" type="Button" parent="CenterContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_1ag4r")
 text = "Уровень 1"
 
-[node name="LevelButton2" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="LevelButton2" type="Button" parent="CenterContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_1ag4r")
 text = "Уровень 2"
 
-[node name="LevelButton3" type="Button" parent="VBoxContainer/GridContainer"]
+[node name="LevelButton3" type="Button" parent="CenterContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("2_1ag4r")
 text = "Уровень 3"
 
-[connection signal="pressed" from="VBoxContainer/GridContainer/LevelButton1" to="." method="_on_level_button_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/LevelButton2" to="." method="_on_level_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/LevelButton3" to="." method="_on_level_button_3_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/LevelButton1" to="." method="_on_level_button_1_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/LevelButton2" to="." method="_on_level_button_2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/GridContainer/LevelButton3" to="." method="_on_level_button_3_pressed"]
